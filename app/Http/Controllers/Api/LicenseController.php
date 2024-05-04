@@ -24,14 +24,14 @@ class LicenseController extends Controller
         try {
             if ($this->apiKey != $request->header('Api-key')) {
                 return response()->json([
-                    'error' => 'Invalid Api Key',
+                    'error' => 'Invalid Api Key Please contact support for assistance.',
                 ]);
             }
 
             $items = Item::pluck('item_number')->toArray();
             if (!in_array($request->header('Item-Id'), $items)) {
                 return response()->json([
-                    'error' => 'Invalid Item Id',
+                    'error' => 'Invalid Item Id Please contact support for assistance.',
                 ], Response::HTTP_BAD_REQUEST);
             }
 
@@ -40,7 +40,7 @@ class LicenseController extends Controller
 
             if ($license){
                 return response()->json([
-                    'error' => 'You are already verified',
+                    'error' => 'You are already verified Please contact support for assistance.',
                 ],  Response::HTTP_BAD_REQUEST);
             }
 
@@ -48,7 +48,7 @@ class LicenseController extends Controller
             $license = $this->licenseService->store($response,$item,$request);
 
             return response()->json([
-                'success' => 'Your item has been verified thank you join with us',
+                'success' => 'Your item has been verified Thanks for purchasing',
                 'license_key' => $license->license_key
             ],  Response::HTTP_CREATED);
 

@@ -20,5 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::post('/license-verify', [LicenseController::class, 'verify']);
 Route::post('/license-activate', [LicenseController::class, 'activate']);
